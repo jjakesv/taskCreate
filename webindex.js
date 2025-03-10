@@ -107,6 +107,6 @@ function startGame() {
   });
 }
 
-app.listen(port, host, () => {
+app.listen(port, () => {
   //console.log(`Server is running on http://${host}:${port}`);
 });
