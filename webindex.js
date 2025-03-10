@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/add-word", (req, res) => {
-  const word = req.body.word.trim().toLowerCase();
+  const word = req.body.word.toLowerCase();
 
   if (/\d/.test(word)) {
     return res.send("❌ Word cannot contain numbers. <a href='/'>Go Back</a>");
@@ -67,7 +67,7 @@ app.post("/add-word", (req, res) => {
 });
 
 app.post("/guess", (req, res) => {
-  const guess = req.body.guess.trim().toLowerCase();
+  const guess = req.body.guess.toLowerCase();
 
   if (guess.length !== secretWord.length) {
     return res.send(`
