@@ -104,5 +104,5 @@ app.post("/guess", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on https://67.220.85.146:${port}`);
+  //console.log(`Server is running on https://67.220.85.146:${port}`);
 });
