@@ -1,7 +1,5 @@
 const readline = require("readline");
 
-const webindex = require("./webindex");
-
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
