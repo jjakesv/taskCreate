@@ -7,9 +7,25 @@ const rl = readline.createInterface({
 });
 
 let wordList = [];
+let minLength = 1;
+
+function askMinLength() {
+  rl.question("Enter the minimum word length (1-10): ", (input) => {
+    const num = parseInt(input.trim());
+    if (isNaN(num) || num < 1 || num > 10) {
+      console.log("❌ Please enter a valid number between 1 and 10.");
+      askMinLength();
+    } else {
+      minLength = num;
+      collectWords();
+    }
+  });
+}
 
 function collectWords() {
-  console.log("Please enter at least 8 words to add to the word list.");
+  console.log(
+    `Please enter at least 8 words (min length: ${minLength} letters).`
+  );
 
   function askForWord(count) {
     rl.question(`Enter word #${count + 1}: `, (input) => {
@@ -17,6 +33,8 @@ function collectWords() {
 
       if (/\d/.test(word)) {
         console.log("❌ Word cannot contain numbers.");
+      } else if (word === "" || word.length < minLength) {
+        console.log(`❌ Word must be at least ${minLength} letters long.`);
       } else if (wordList.includes(word)) {
         console.log(
           "❌ This word is already in the list. Please enter a different word."
@@ -47,8 +65,13 @@ function startGame() {
 
   function askGuess() {
     rl.question("Guess the word:\n", (input) => {
-      if (input.length !== secretWord.length) {
-        console.log(`❌ Please enter exactly ${secretWord.length} letters.`);
+      if (input === "" || input === " ") {
+        console.log("❌ Enter one of the words from the word bank!");
+      } else if (input.length !== secretWord.length) {
+        console.log(
+          `❌ Wrong Guess. Hint: word length is ${secretWord.length} letters.`
+        );
+        attempts++;
       } else if (input.toLowerCase() === secretWord) {
         console.log("🎉 Correct! You guessed the word!");
         wonGame = true;
@@ -83,4 +106,4 @@ function startGame() {
   askGuess();
 }
 
-collectWords();
+askMinLength();
