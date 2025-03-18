@@ -24,7 +24,7 @@ function askMinLength() {
 
 function collectWords() {
   console.log(
-    `Please enter at least 8 words (min length: ${minLength} letters).`
+    `\nPlease enter at least 8 words (min length: ${minLength} letters).`
   );
 
   function askForWord(count) {
