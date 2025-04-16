@@ -9,6 +9,10 @@ const rl = readline.createInterface({
 let wordList = [];
 let minLength = 1;
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function askMinLength() {
   rl.question("Enter the minimum word length (1-10): ", (input) => {
     const num = parseInt(input.trim());
@@ -106,4 +110,9 @@ function startGame() {
   askGuess();
 }
 
-askMinLength();
+async function lateStart() {
+  await sleep(2000); // wait for 2 seconds
+  askMinLength();
+}
+
+lateStart();
